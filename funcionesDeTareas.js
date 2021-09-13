@@ -8,9 +8,8 @@ function listar(){
     let tareas2 = JSON.parse(tareas);
 
     tareas2.forEach((item,index)=> {
-        console.log((index + 1) +") " + item.Titulo +" " + item.Estado );
+        console.log((index + 1) +") " + item.Titulo +": " + item.Estado );
     });
-
 
 };
  function escribirJson(arrayDeTareas){
@@ -28,15 +27,21 @@ function guardarTarea(tarea) {
     escribirJson(tareas2);
    
 };
-
-function leerPorEstado(estado){
-    let lista = listar();
+function filtrarPorEstado(elemento){
     
+    let tareas = fs.readFileSync("./tareas.json");
+
+    var lista = JSON.parse(tareas);
+    return lista
+    
+
 }
+
 
 module.exports = {
     listarTareas : listar,
     crearTareas : escribirJson,
     guardarTareas : guardarTarea,
-    filtrarPorEstado : leerPorEstado
-};
+    filtrarPorEstado : filtrarPorEstado
+    };
+  

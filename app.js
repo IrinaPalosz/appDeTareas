@@ -1,13 +1,3 @@
-
-// let fs = require('fs');
-
-// var tareas2 = fs.readFileSync("./tareas.json")
-
-// tareas2 = JSON.parse(tareas2);
-//let tareas2 = require('./funcionesDeTareas');
-//let fs = require('fs')
-
-const { filtrarPorEstado } = require("./funcionesDeTareas");
 let funcionesDeTareas = require("./funcionesDeTareas");
 let listado = process.argv;
 
@@ -23,9 +13,18 @@ switch (listado[2]) {
         funcionesDeTareas.guardarTareas(creando);
         console.log("♥ Haz creado tu nueva tarea ♥")
         break;
-    case "filtrar" :
-        var estado = process.argv[3];
-        let proceso = funcionesDeTareas.filtrarPorEstado();
+    case "filtrar" : 
+        var nombreFiltro = process.argv[3]
+        let filtro = funcionesDeTareas.filtrarPorEstado;
+        let filtrando = filtro().filter(function(params) {
+            return nombreFiltro == params.Estado
+            
+        })
+        let poniendoLindo = filtrando.forEach((item) => {
+            console.log("♦ Tarea en estado: " + item.Estado +" --> " + item.Titulo)
+            
+        });
+        
         break;
     case undefined:
         console.log("Atención - Tienes que pasar una acción");
